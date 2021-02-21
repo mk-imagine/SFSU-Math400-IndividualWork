@@ -11,7 +11,6 @@ continueLoop = true;
 
 % initialize array in following format
 % (n, an, bn, xn, f(an), f(bn), f(xn), Emax)
-global mainArr;
 mainArr = zeros(1, 8);
 
 while continueLoop == true
@@ -37,9 +36,8 @@ function fx = f(x)
     return;
 end
 
-% Calculate Array function
+% Helper function
 function calcArr(row)
-    global mainArr;
     tempArr = mainArr;
     tempArr(4) = (tempArr(2) + tempArr(3))/2;
 
