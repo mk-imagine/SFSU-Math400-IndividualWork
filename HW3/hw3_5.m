@@ -14,7 +14,6 @@ while err > acc
     counter = counter + 1;
 end
 
-
 %% Function to be Evaluated
 function fx = f(x)
     fx = x - ((x^4 - 5)/(4*x^3));
