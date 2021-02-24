@@ -16,13 +16,13 @@ fplot(@(x) f(x),[0 5])
 % continueLoop = true; % for user entry loop
 
 %% initialize array in following format
-% [n, an, bn, xn, f(an), f(bn), f(xn), Emax]
-mainArr = zeros(1, 8);
+% [n, an, bn, xn, f(an), f(bn), f(xn), an-bn, Emax]
+mainArr = zeros(1, 9);
 accuracy = 1e-6;
 index = 1;
 
 mainArr(2:3) = [4 5];
-mainArr(index, 1:8) = calcArr(mainArr);
+mainArr(index, 1:9) = calcArr(mainArr);
 
 %% User Entry Loop (not necessary)
 % while continueLoop == true
@@ -58,7 +58,7 @@ while mainArr(index,8)*2 > accuracy
     index = index + 1;
     mainArr = [mainArr; calcArr(newArr)];
 end
-b = array2table(mainArr, 'VariableNames', { 'n', 'an', 'bn', 'xn', 'f(an)', 'f(bn)', 'f(xn)', 'Emax' });
+b = array2table(mainArr, 'VariableNames', { 'n', 'an', 'bn', 'xn', 'f(an)', 'f(bn)', 'f(xn)', '|an-bn|', 'Emax' });
 
 %% Function to be Evaluated
 function fx = f(x)
@@ -75,6 +75,7 @@ function tempArr = calcArr(arr)
     tempArr(6) = f(tempArr(3));
     tempArr(7) = f(tempArr(4));
     
-    tempArr(8) = abs(tempArr(3) - tempArr(2))/2;
+    tempArr(8) = abs(tempArr(3) - tempArr(2)); 
+    tempArr(9) = abs(tempArr(3) - tempArr(2))/2;
     return;
 end
