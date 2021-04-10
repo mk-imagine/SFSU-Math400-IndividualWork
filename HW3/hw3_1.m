@@ -58,7 +58,7 @@ while mainArr(index,8)*2 > accuracy
     index = index + 1;
     mainArr = [mainArr; calcArr(newArr)];
 end
-b = array2table(mainArr, 'VariableNames', { 'n', 'an', 'bn', 'xn', 'f(an)', 'f(bn)', 'f(xn)', '|an-bn|', 'Emax' });
+b = array2table(mainArr, 'VariableNames', { 'n', 'an', 'bn', 'xn', 'f(an)', 'f(bn)', 'f(xn)', '|an-bn|', 'Emax' })
 
 %% Function to be Evaluated
 function fx = f(x)
