@@ -56,8 +56,8 @@ for i = 1 : nrow - 1
    M = zeros ( nrow, 1 );
     for j = i+1 : nrow
 	    m = -A(j,i) / A(i,i);
-        L(j,i) = -m;
-        M(j) = -m;
+        L(j,i) = m;
+        M(j) = m;
 		A(j,i) = 0;
 		A(j, i+1:nrow) = A(j, i+1:nrow) + m * A(i, i+1:nrow);
 		b(j) = b(j) + m * b(i);
@@ -78,4 +78,6 @@ end
 
 % LU Factorization
 L(nrow,ncol) = 1;
+L
 U = A;
+U
