@@ -42,7 +42,8 @@ pvt=zeros(1,nrow);
 for i=1:nrow
     pvt(i) = i;
 end
-
+A
+pause
 for i = 1 : nrow - 1
 
 %
@@ -76,6 +77,8 @@ for i = 1 : nrow - 1
 		A(pvt(j),i) = m;
 		A(pvt(j), i+1:nrow) = A(pvt(j), i+1:nrow) - m * A(pvt(i), i+1:nrow);
     end
+    A(pvt,:)
+    pause
 end
 
 lu = A;
