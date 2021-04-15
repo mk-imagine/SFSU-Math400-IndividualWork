@@ -29,6 +29,7 @@ function [lu, pvt] = LUfactor ( A )
 %
 
 [nrow,ncol] = size ( A );
+B = A;
 if ( nrow ~= ncol )
    disp ( 'LUfactor error: Square coefficient matrix required' );
    return;
@@ -52,6 +53,7 @@ for i = 1 : nrow - 1
 
     rr=pvt(i:nrow);
     [x ,t]=max(abs(A(rr,i))); t=t+i-1;
+    fprintf ( 'Pivot: %d', x );
     if ( t ~= i )
 	   temp = pvt(i);
 	   pvt(i) = pvt(t);
@@ -75,9 +77,11 @@ for i = 1 : nrow - 1
     for j = i+1 : nrow
 	    m = A(pvt(j),i) / A(pvt(i),i);
 		A(pvt(j),i) = m;
+        B(pvt(j),i) = 0;
 		A(pvt(j), i+1:nrow) = A(pvt(j), i+1:nrow) - m * A(pvt(i), i+1:nrow);
+        B(pvt(j), i+1:nrow) = A(pvt(j), i+1:nrow);
     end
-    A(pvt,:)
+    B(pvt,:)
     pause
 end
 
