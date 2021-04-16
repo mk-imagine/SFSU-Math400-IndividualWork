@@ -1,4 +1,4 @@
-function [lu, pvt] = LUfactor ( A )
+function [lu, pvt, lupivoted] = LUfactor ( A )
 
 %LUFACTOR     compute the LU decomposition for the matrix A
 %
@@ -29,7 +29,8 @@ function [lu, pvt] = LUfactor ( A )
 %
 
 [nrow,ncol] = size ( A );
-B = A;
+U = A;
+L = zeros(nrow,ncol);
 if ( nrow ~= ncol )
    disp ( 'LUfactor error: Square coefficient matrix required' );
    return;
@@ -43,7 +44,6 @@ pvt=zeros(1,nrow);
 for i=1:nrow
     pvt(i) = i;
 end
-A
 pause
 for i = 1 : nrow - 1
 
@@ -73,16 +73,13 @@ for i = 1 : nrow - 1
 %
 %   elimination steps
 %
-
+    
     for j = i+1 : nrow
 	    m = A(pvt(j),i) / A(pvt(i),i);
 		A(pvt(j),i) = m;
-        B(pvt(j),i) = 0;
 		A(pvt(j), i+1:nrow) = A(pvt(j), i+1:nrow) - m * A(pvt(i), i+1:nrow);
-        B(pvt(j), i+1:nrow) = A(pvt(j), i+1:nrow);
     end
-    B(pvt,:)
     pause
 end
-
 lu = A;
+lupivoted = A(pvt,:);
