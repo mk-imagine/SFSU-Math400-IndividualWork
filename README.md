@@ -1,3 +1,3 @@
 # Math400_IndividualWork
-## Numerical Analysis
+### Numerical Analysis
 Individual projects
